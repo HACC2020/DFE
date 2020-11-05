@@ -5,5 +5,14 @@ from django.shortcuts import render
 
 #does organization exist within database
 
+def home(request):
+    return render(request, 'home.html')
+
 def about(request):
     return render(request, 'about.html')
+
+def contact(request):
+    return render(request, 'contact.html')
+
+def departments(request):
+    return render(request, 'departments.html')
