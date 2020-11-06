@@ -1,6 +1,11 @@
 from django.shortcuts import render
 from .models import usergroups
+from .models import applications
+from .models import projects
+from .models import percents
+
 # Create your views here.
+
 #def work(request, folder_id):
 
 #does organization exist within database
