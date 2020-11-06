@@ -1,6 +1,18 @@
 from django.shortcuts import render
 
 # Create your views here.
-def work(request, folder_id):
+#def work(request, folder_id):
 
-# does organization exist within database
+#does organization exist within database
+
+def home(request):
+    return render(request, 'home.html')
+
+def about(request):
+    return render(request, 'about.html')
+
+def contact(request):
+    return render(request, 'contact.html')
+
+def departments(request):
+    return render(request, 'departments.html')
