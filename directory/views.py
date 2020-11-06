@@ -11,7 +11,7 @@ from .models import percents
 #does organization exist within database
 
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'directory.html')
 
 def about(request):
     return render(request, 'about.html')

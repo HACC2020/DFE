@@ -9,3 +9,4 @@ admin.site.register(usergroups)
 admin.site.register(applications)
 admin.site.register(projects)
 admin.site.register(percents)
+
