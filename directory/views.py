@@ -6,9 +6,6 @@ from .models import percents
 
 # Create your views here.
 
-#def work(request, folder_id):
-
-#does organization exist within database
 
 def home(request):
     return render(request, 'directory.html')
