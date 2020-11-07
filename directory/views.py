@@ -44,3 +44,12 @@ def departments(request, page):
 
     return render(request, 'departments.html', {'name': subdepartments, 'page': pages})
 
+#REPLACE VARIABLES WITH APPLICATIONS
+
+def applications(request):
+    applications_var = applications.objects.all().order_by('name')
+    projects = []
+    return render(request, 'applications.html', {'name': projects})
+
+
+
