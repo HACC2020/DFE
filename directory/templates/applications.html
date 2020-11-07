@@ -8,19 +8,20 @@
 
 
   </tr>
-    {% for i in name %}
+    {% for i in appinfo %}
   <tr>
-    <td>{{i.parent}}</td>
-    <td>{{ i.name }}</td>
+    <td>{{i.name}}
+      <br><div class="info">successor: {{i.successor}} </div>
+      <br><div></div>
+
+
+    </td>
+
+    <td>xxxxxxxx</td>
 
   </tr>
-    {% endfor %}
-</table>
+{% endfor %}
 
-<div>
-  {% for i in page %}
-  <a href="/directory/departments/applications/"></a>
-  {% endfor %}
-</div>
+</table>
 {% endblock %}
 
