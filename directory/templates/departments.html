@@ -1,4 +1,4 @@
-{% extends "home.html" %}
+{% extends "directory.html" %}
 
 {% block content %}
   <table>
@@ -6,32 +6,15 @@
     <th>Department Name</th>
     <th>Sub Departmens</th>
 
-  </tr>
-  <tr>
-    <td>xxxxxx</td>
-    <td>xxxxxxxx</td>
-  </tr>
-  <tr>
-    <td>xxxxxxxx</td>
-    <td>xxxxxxxx</td>
 
   </tr>
+    {% for i in name %}
   <tr>
-    <td>xxxxxxx</td>
-    <td>xxxxxxxxx</td>
+    <td>{{i.parent}}</td>
+    <td>{{ i.name }}</td>
+
   </tr>
-  <tr>
-    <td>xxxxxxxxxx</td>
-    <td>xxxxxxxxx</td>
-    </tr>
-  <tr>
-    <td>xxxxxxxxx</td>
-    <td>xxxxxxxx</td>
-     </tr>
-  <tr>
-    <td>xxxxxxxxxx</td>
-    <td>xxxxxxxxx</td>
-     </tr>
+    {% endfor %}
 </table>
 {% endblock %}
 
