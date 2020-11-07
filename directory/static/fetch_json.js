@@ -1,18 +1,11 @@
-function get_json () {
-	var data = {
-		resource_id: '9468a555-8d1f-42fb-b1a9-c3ae0d5c756d', // the resource id
-		limit: 5 // get 5 results
-	};
-	$.ajax({
-		url: 'https://opendata.hawaii.gov/api/3/action/datastore_search',
-		data: data,
-		dataType: 'json',
-		success: function(data) {
-			alert('Total results found: ' + data.result.total);
-			console.log(data.
-		}
-	});
+function get_application_from_name (name) {
+	$.get("https://opendata.hawaii.gov/api/3/action/datastore_search_sql",
+		"sql=SELECT * from \"63c0030c-a8ff-419b-9139-990c475cc6e8\" WHERE \"name\" LIKE " +  "\'" + name + "\'",
+		function(data) {
+
+		}, "json");
+	return tmp;
 }
 
-get_json();
+get_application_from_name("joe mamma");
 
