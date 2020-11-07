@@ -8,7 +8,7 @@ from .models import percents
 
 
 def home(request):
-    return render(request, 'directory.html')
+    return render(request, 'home.html')
 
 
 def about(request):
