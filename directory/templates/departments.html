@@ -17,7 +17,11 @@
     {% endfor %}
 </table>
 
-
+<div>
+  {% for i in page %}
+  <a href="/directory/departments/{{i}}">{{i}}</a>
+  {% endfor %}
+</div>
 
 
 {% endblock %}
