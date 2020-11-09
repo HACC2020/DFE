@@ -16,7 +16,6 @@ def contact(request):
 
 def departments(request, page):
     usergroups_var = usergroups.objects.all().order_by('parent')
-
     filterUserGroup = []
 
     for i in usergroups_var:
@@ -47,9 +46,6 @@ def departments(request, page):
     return render(request, 'departments.html', {'name': subdepartments, 'page': pages})
 
 
-#REPLACE VARIABLES WITH APPLICATIONS
-
-
 def application(request, departments):
     applications_var = applications.objects.filter(ownerAgencyName=departments)
     subdepartments = usergroups.objects.filter(name=departments)
@@ -57,14 +53,32 @@ def application(request, departments):
     if subdepartments is not None:
         for i in range(0,len(applications_var)):
             apps.append((applications_var[i]))
-        # print(applications_var)
-        return render(request, 'applications.html', {'appinfo': apps})
+        print(apps)
+        return render(request, 'applications.html', {'apps': apps})
     else:
-        return(request, 'error.html')
-
-#def project(request,):
+        return render(request, 'error.html')
 
 
+def project(request, applications):
+    projects_var = projects.objects.filter(applications=applications)
+    appinfo = applications.objects.filter(name=applications)
+    project = []
+    if appinfo is not None:
+        for i in range(0, len(projects_var)):
+            project.append((projects_var[i]))
+        print(projects_var)
+        return render(request, 'applications.html', {'projects': project})
+    else:
+        return render(request, 'error.html')
+
+
+def projectpage(request, projects):
+    projectdata_var = projects.objects.filter(name=projects)
+    projectdata = []
+    for i in projectdata_var:
+        projectdata.append(projectdata_var[i])
+        print(projectdata)
+    return render(request, 'project.html', {'projectdata': projectdata})
 
 
 

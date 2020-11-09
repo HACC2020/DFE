@@ -1,0 +1,39 @@
+{% extends directory.html %}
+
+{% block content %}
+<table style=width:"20%">
+
+  {{ for i in projectdata }}
+  <tr>
+    <th>Dates</th>
+
+  </tr>
+  <tr>
+    <td>Plan Start<br>{{ i.lifecycleCustom_planningStarted }}</td>
+
+  </tr>
+  <tr>
+    <td>Approval<br>{{ i.lifecycleCustom_approved }}</td>
+
+  </tr>
+  <tr>
+    <td>Projected Start<br>{{ i.lifecycleCustom_projectedStart }}</td>
+
+  </tr>
+  <tr>
+    <td>Completed<br>{{ i.lifecycleCustom_projectedCompletion }}</td>
+
+  </tr>
+  <tr>
+    <td>Cancelled<br>{{ i.lifecycleCustom_cancelled }}</td>
+
+  </tr>
+
+</table>
+<table style="float:right; margin-top:-110px">
+
+    <td>Owner: {{ i.ownerAgencyName }}<br>Project Status: {{ i.projectStatus }}<br>Business Value: {{ i.businessValue }}<br>Project Risk: {{ i.projectRisk }}</td>
+
+</table>
+{% endblock %}
+
