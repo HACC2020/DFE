@@ -60,12 +60,11 @@ var data1 = {
     "children":
         [
             {% for i in listofapps %}
-            {"name":"{{ i }}", "colname": "level2"}
+            {"name":"{{ i }}", "colname": "level2"},
             {% endfor %}
         ],
     "name":"{% for i in projectinfo %}{{ i.name }}{% endfor %}"}
 treeJSON = function(data) {
-    var nodes = tree.nodes(data) ;
     console.log(data1)
   // Create the cluster layout:
   var cluster = d3.cluster()
@@ -95,23 +94,29 @@ treeJSON = function(data) {
 
   // Add a circle for each node.
 
-  svg.selectAll("g")
+  var you = svg.selectAll("g")
       .data(root.descendants())
       .enter()
       .append("g")
       .attr("transform", function(d) {
           return "translate(" + d.y + "," + d.x + ")"
       })
-      .append("circle")
+
+    you.append("circle")
         .attr("r", 7)
         .style("fill", "#69b3a2")
         .attr("stroke", "black")
         .style("stroke-width", 2)
+        .text(function (d) {
+            console.log(d.name);
+            return d.data.name; })
+    you.append("text")
+        .text(function (d) {
+            console.log(d)
+            return d.data.name; })
 
 }
 treeJSON(data1);
-
-
 </script>
 
 <table style="width:20%; float:right">
