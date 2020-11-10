@@ -15,12 +15,15 @@ def contact(request):
 
 
 def departments(request, page):
-    usergroups_var = usergroups.objects.all().order_by('parent')
+    usergroups_var = usergroups.objects.all()
     filterUserGroup = []
 
     for i in usergroups_var:
-        if applications.objects.filter(ownerAgencyName=i) is not None:
+        if projects.objects.filter(ownerAgencyName=i) is not None:
             filterUserGroup.append(i)
+
+    filterUserGroup.sort(key=lambda x:x.parent, reverse=False)
+    print(filterUserGroup)
 
     pages = []
     subdepartments = []
@@ -47,13 +50,13 @@ def departments(request, page):
 
 
 def application(request, departments):
-    applications_var = applications.objects.filter(ownerAgencyName=departments)
+    applications_var = applications.objects.filter(subOwnerAgencyName=departments)
     subdepartments = usergroups.objects.filter(name=departments)
     apps = []
     if subdepartments is not None:
         for i in range(0,len(applications_var)):
             apps.append((applications_var[i]))
-        print(apps)
+        #print(apps)
         return render(request, 'applications.html', {'apps': apps})
     else:
         return render(request, 'error.html')
@@ -66,7 +69,8 @@ def project(request, applications):
     if appinfo is not None:
         for i in range(0, len(projects_var)):
             project.append((projects_var[i]))
-        print(projects_var)
+        print(project)
+
         return render(request, 'applications.html', {'projects': project})
     else:
         return render(request, 'error.html')

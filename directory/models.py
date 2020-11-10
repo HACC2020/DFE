@@ -6,6 +6,7 @@ from django.db import models
 class applications(models.Model):
     name = models.CharField(max_length=100)
     ownerAgencyName = models.CharField(max_length=100)
+    subOwnerAgencyName = models.CharField(max_length=100)
     successors = models.CharField(max_length=100)
     leadingBusinessCapability = models.CharField(max_length=100)
     businessCriticality = models.CharField(max_length=100)
