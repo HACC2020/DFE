@@ -107,12 +107,8 @@ treeJSON = function(data) {
         .style("fill", "#69b3a2")
         .attr("stroke", "black")
         .style("stroke-width", 2)
-        .text(function (d) {
-            console.log(d.name);
-            return d.data.name; })
     you.append("text")
         .text(function (d) {
-            console.log(d)
             return d.data.name; })
 
 }
