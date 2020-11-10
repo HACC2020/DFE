@@ -15,35 +15,41 @@ def contact(request):
 
 
 def departments(request, page):
-    usergroups_var = usergroups.objects.all()
+    usergroups_var = usergroups.objects.all().order_by('parent')
+    project_var = projects.objects.all()
+    Application_var = applications.objects.all()
     filterUserGroup = []
 
     for i in usergroups_var:
-        if projects.objects.filter(ownerAgencyName=i) is not None:
-            filterUserGroup.append(i)
+        for t in project_var:
+            if i.name == t.subOwnerAgencyName:
+                filterUserGroup.append(i)
+    for i in usergroups_var:
+        for t in Application_var:
+            if i.name == t.subOwnerAgencyName:
+                filterUserGroup.append(i)
 
-    filterUserGroup.sort(key=lambda x:x.parent, reverse=False)
-    print(filterUserGroup)
+    filterUserGroup = list(set(filterUserGroup))
 
     pages = []
     subdepartments = []
-    page_var = len(filterUserGroup)/25
+    page_var = len(filterUserGroup) / 25
     page_var = round(page_var)
     t = 0
     p = 25
 
     if int(page) != 1:
-        for i in range(0,int(page)):
+        for i in range(0, int(page)):
             t += 25
             p += 25
 
-    for i in range(t,p):
+    for i in range(t, p):
         try:
             subdepartments.append(filterUserGroup[i])
         except IndexError:
             pass
 
-    for i in range(1,int(page_var)+1):
+    for i in range(1, int(page_var)):
         pages.append(i)
 
     return render(request, 'departments.html', {'name': subdepartments, 'page': pages})
@@ -52,37 +58,31 @@ def departments(request, page):
 def application(request, departments):
     applications_var = applications.objects.filter(subOwnerAgencyName=departments)
     subdepartments = usergroups.objects.filter(name=departments)
+    project_filter = projects.objects.filter(subOwnerAgencyName=departments)
     apps = []
-    if subdepartments is not None:
+    project = []
+
+    if len(subdepartments) != 0:
         for i in range(0,len(applications_var)):
             apps.append((applications_var[i]))
         #print(apps)
-        return render(request, 'applications.html', {'apps': apps})
+        for i in range(0,len(project_filter)):
+            try:
+                project_filter[i].applications=project_filter[i].applications.split(';')
+                #print(project_filter[i])
+            except AttributeError:
+                pass
+            project.append(project_filter[i])
+        #print(project)
+        return render(request, 'applications.html', {'apps': apps, 'projects': project})
     else:
         return render(request, 'error.html')
 
 
-def project(request, applications):
-    projects_var = projects.objects.filter(applications=applications)
-    appinfo = applications.objects.filter(name=applications)
-    project = []
-    if appinfo is not None:
-        for i in range(0, len(projects_var)):
-            project.append((projects_var[i]))
-        print(project)
-
-        return render(request, 'applications.html', {'projects': project})
-    else:
-        return render(request, 'error.html')
-
-
-def projectpage(request, projects):
-    projectdata_var = projects.objects.filter(name=projects)
-    projectdata = []
-    for i in projectdata_var:
-        projectdata.append(projectdata_var[i])
-        print(projectdata)
-    return render(request, 'project.html', {'projectdata': projectdata})
+def projectpage(request, project):
+    projects_var = projects.objects.filter(name=project)
+    print(projects_var)
+    return render(request, 'project.html', {'projectinfo': projects_var})
 
 
 

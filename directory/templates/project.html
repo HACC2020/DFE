@@ -1,39 +1,45 @@
-{% extends directory.html %}
+{% extends "directory.html" %}
 
 {% block content %}
-<table style=width:"20%">
+<table style="width:20%; float:left">
 
-  {{ for i in projectdata }}
+  {% for i in projectinfo %}
   <tr>
-    <th>Dates</th>
-
-  </tr>
-  <tr>
-    <td>Plan Start<br>{{ i.lifecycleCustom_planningStarted }}</td>
+    <th><b>Dates</b></th>
 
   </tr>
   <tr>
-    <td>Approval<br>{{ i.lifecycleCustom_approved }}</td>
+    <td><b>Plan Start:</b><br>{{ i.lifecycleCustom_planningStarted }}</td>
 
   </tr>
   <tr>
-    <td>Projected Start<br>{{ i.lifecycleCustom_projectedStart }}</td>
+    <td><b>Approval:</b><br>{{ i.lifecycleCustom_approved }}</td>
 
   </tr>
   <tr>
-    <td>Completed<br>{{ i.lifecycleCustom_projectedCompletion }}</td>
+    <td><b>Projected Start:</b><br>{{ i.lifecycleCustom_projectedStart }}</td>
 
   </tr>
   <tr>
-    <td>Cancelled<br>{{ i.lifecycleCustom_cancelled }}</td>
+    <td><b>Completed:</b><br>{{ i.lifecycleCustom_projectedCompletion }}</td>
+
+  </tr>
+  <tr>
+    <td><b>Cancelled:</b><br>{{ i.lifecycleCustom_cancelled }}</td>
 
   </tr>
 
 </table>
-<table style="float:right; margin-top:-110px">
-
-    <td>Owner: {{ i.ownerAgencyName }}<br>Project Status: {{ i.projectStatus }}<br>Business Value: {{ i.businessValue }}<br>Project Risk: {{ i.projectRisk }}</td>
-
+<table style="width:20%; float:right">
+    <td>
+        <b>Name: </b>{{ i.name }}
+        <br><b>Owner: </b>{{ i.ownerAgencyName }}
+        <br><b>Project Status: </b>{{ i.projectStatus }}
+        <br><b>Business Value: </b>{{ i.businessValue }}
+        <br><b>Project Risk: </b>{{ i.projectRisk }}
+    </td>
+{% endfor %}
 </table>
+
 {% endblock %}
 

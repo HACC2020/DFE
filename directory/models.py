@@ -19,6 +19,8 @@ class applications(models.Model):
     hostingTypeTag = models.CharField(max_length=100)
     majorInformationSystemsTag = models.CharField(max_length=100)
 
+    class Meta:
+        ordering = ['name']
 
     def __str__(self):
         return self.name
@@ -26,6 +28,7 @@ class applications(models.Model):
 
 class projects(models.Model):
     ownerAgencyName = models.CharField(max_length=100)
+    subOwnerAgencyName = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     applications = models.CharField(max_length=100)
     projectStatus = models.CharField(max_length=100)
@@ -36,6 +39,9 @@ class projects(models.Model):
     lifecycleCustom_projectedStart = models.CharField(max_length=100)
     lifecycleCustom_cancelled = models.CharField(max_length=100)
     lifecycleCustom_projectedCompletion = models.CharField(max_length=100)
+
+    class Meta:
+        ordering = ['name']
 
     def __str__(self):
         return self.name

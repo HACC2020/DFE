@@ -37,29 +37,26 @@
       <br> <div class="appinfo"> Hosting Type Tag: {{ i.hostingTypeTag }} </div>
       <br> <div class="appinfo"> Major Information System Tag: {{ i.majorInformationSystemsTag }} </div>
     </td>
-        {% endfor %}
-    {% for i in projects %}
-    <td>{{ i.name }}:
-      <br> <a href="/directory/departments/{{i.name}}">{{i.name}}</a>
-      <br> <div class="projectinfo"> Application: {{ i.applications }} </div>
-      <br> <div class="projectinfo"> Project Status: {{ i.projectStatus }}</div>
-      <br> <div class="projectinfo"> Business Value: {{ i.businessValue }} </div>
-      <br> <div class="projectinfo"> Project Risk: {{ i.projectRisk }} </div>
-      <br> <div class="projectinfo"> Lifecycle/PlanningStart: {{ i.lifecycleCustom_planningStarted }} </div>
-      <br> <div class="projectinfo"> Lifecycle/Approved: {{ i.lifecycleCustom_approved }} </div>
-      <br> <div class="projectinfo"> Lifecycle/ProjectedStart: {{ i.lifecycleCustom_projectedStart }} </div>
-      <br> <div class="projectinfo"> Lifecycle/Cancelled: {{ i.lifecycleCustom_cancelled }} </div>
-      <br> <div class="projectinfo"> Lifecycle/ProjectedCompletion: {{ i.lifecycleCustom_projectedCompletion }} </div>
+    {% for p in projects %}
+    {% for l in p.applications %}
+    {% if l == i.name %}
+
+    <td>
+       <br> <a href="/directory/applications/{{p.name}}">{{p.name}}</a>
     </td>
-        {% endfor %}
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+    {% endfor %}
   </tr>
 
 </table>
-
+<!--
 <div>
   {% for i in page %}
   <a href="/directory/departments/applications/"></a>
   {% endfor %}
 </div>
+-->
 {% endblock %}
 
