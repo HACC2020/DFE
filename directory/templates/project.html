@@ -44,8 +44,8 @@
 <script>
 
 // set the dimensions and margins of the graph
-var width = 800
-var height = 460
+var width = 900
+var height = 530
 
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz")
@@ -110,12 +110,16 @@ treeJSON = function(data) {
     you.append("text")
         .text(function (d) {
             return d.data.name; })
+        .attr("transform", function(d) {
+          return "translate(" + -10 + "," + (25) + ")"
+      })
+        .style("font-family", "verdana")
 
 }
 treeJSON(data1);
 </script>
 
-<table style="width:20%; float:right">
+<table style="width:20%; float:right; bottom: 0; right: 0; position: fixed;">
     <td>
         <b>Name: </b>{{ i.name }}
         <br><b>Owner: </b>{{ i.ownerAgencyName }}
