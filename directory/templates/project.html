@@ -99,7 +99,7 @@ treeJSON = function(data) {
       .enter()
       .append("g")
       .attr("transform", function(d) {
-          return "translate(" + d.y + "," + d.x + ")"
+          return "translate(" + (d.y + 10) + "," + d.x + ")"
       })
 
     you.append("circle")
