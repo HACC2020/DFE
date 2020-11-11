@@ -103,13 +103,13 @@ def application(request, departments):
         return render(request, 'error.html')
 
 
-def projectpage(request, project):
-    projects_var = projects.objects.filter(name=project)
-    for i in projects_var:
-        listofapps = i.applications.split(';')
-    #print(projects_var)
-    return render(request, 'project.html', {'projectinfo': projects_var, 'listofapps': listofapps})
-
+# def projectpage(request, project):
+#     projects_var = projects.objects.filter(name=project)
+#     for i in projects_var:
+#         listofapps = i.applications.split(';')
+#     #print(projects_var)
+#     return render(request, 'projectpage.html', {'projectinfo': projects_var, 'listofapps': listofapps})
+#
 
 
 
