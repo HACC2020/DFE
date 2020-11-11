@@ -104,11 +104,11 @@ def application(request, departments):
 
 
 def projectpage(request, project):
-     projects_var = projects.objects.filter(name=project)
-     for i in projects_var:
+    projects_var = projects.objects.filter(name=project)
+    for i in projects_var:
         listofapps = i.applications.split(';')
-     return render(request, 'project.html', {'projectinfo': projects_var, 'listofapps': listofapps})
-
+    #print(projects_var)
+    return render(request, 'project.html', {'projectinfo': projects_var, 'listofapps': listofapps})
 
 
 
