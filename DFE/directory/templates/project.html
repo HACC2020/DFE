@@ -1,30 +1,36 @@
-{% comment %}
-    Dendrogram HTML and JS
-    Copyright (C) 2020  DFE               
-                                           
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.                         
-                                                          
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.                      
+{% extends "directory.html" %}
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-{% endcomment %}
+{% block content %}
+<table style="width:20%; float:left">
 
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Untitled Document</title>
-</head>
+  {% for i in projectinfo %}
+  <tr>
+    <th><b>Dates</b></th>
 
-<body>
-	<!-- Code from d3-graph-gallery.com -->
+  </tr>
+  <tr>
+    <td><b>Plan Start:</b><br>{{ i.lifecycleCustom_planningStarted }}</td>
+
+  </tr>
+  <tr>
+    <td><b>Approval:</b><br>{{ i.lifecycleCustom_approved }}</td>
+
+  </tr>
+  <tr>
+    <td><b>Projected Start:</b><br>{{ i.lifecycleCustom_projectedStart }}</td>
+
+  </tr>
+  <tr>
+    <td><b>Completed:</b><br>{{ i.lifecycleCustom_projectedCompletion }}</td>
+
+  </tr>
+  <tr>
+    <td><b>Cancelled:</b><br>{{ i.lifecycleCustom_cancelled }}</td>
+
+  </tr>
+
+</table>
+
 <!DOCTYPE html>
 <meta charset="utf-8">
 
@@ -53,13 +59,13 @@ var svg = d3.select("#my_dataviz")
 var data1 = {
     "children":
         [
-        	{% for i in listofapps %}
-            {"name":"{{ i }}", "colname": "level2"}
+            {% for i in listofapps %}
+            {"name":"{{ i }}", "colname": "level2"},
             {% endfor %}
         ],
-    "   name":"CEO"}
+    "name":"{% for i in projectinfo %}{{ i.name }}{% endfor %}"}
 treeJSON = function(data) {
-	console.log(data1)
+    console.log(data1)
   // Create the cluster layout:
   var cluster = d3.cluster()
     .size([height, width - 100]);  // 100 is the margin I will have on the right side
@@ -87,23 +93,38 @@ treeJSON = function(data) {
 
 
   // Add a circle for each node.
-	
-  svg.selectAll("g")
+
+  var you = svg.selectAll("g")
       .data(root.descendants())
       .enter()
       .append("g")
       .attr("transform", function(d) {
           return "translate(" + d.y + "," + d.x + ")"
       })
-      .append("circle")
+
+    you.append("circle")
         .attr("r", 7)
         .style("fill", "#69b3a2")
         .attr("stroke", "black")
         .style("stroke-width", 2)
+    you.append("text")
+        .text(function (d) {
+            return d.data.name; })
 
 }
 treeJSON(data1);
-
 </script>
-</body>
-</html>
+
+<table style="width:20%; float:right">
+    <td>
+        <b>Name: </b>{{ i.name }}
+        <br><b>Owner: </b>{{ i.ownerAgencyName }}
+        <br><b>Project Status: </b>{{ i.projectStatus }}
+        <br><b>Business Value: </b>{{ i.businessValue }}
+        <br><b>Project Risk: </b>{{ i.projectRisk }}
+    </td>
+{% endfor %}
+</table>
+
+{% endblock %}
+
