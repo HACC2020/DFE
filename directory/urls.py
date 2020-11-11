@@ -25,6 +25,6 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),
     path('departments/<str:page>/', views.departments, name='departments'),
     path('<str:departments>/', views.application, name='applications'),
-    #path('applications/<str:project>/', views.projectpage, name='projectpage')
+    path('applications/<str:project>/', views.projectpage, name='project')
 
 ]
