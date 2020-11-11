@@ -44,7 +44,7 @@
 <script>
 
 // set the dimensions and margins of the graph
-var width = 460
+var width = 800
 var height = 460
 
 // append the svg object to the body of the page
@@ -68,7 +68,7 @@ treeJSON = function(data) {
     console.log(data1)
   // Create the cluster layout:
   var cluster = d3.cluster()
-    .size([height, width - 100]);  // 100 is the margin I will have on the right side
+    .size([height, width-500]);  // 100 is the margin I will have on the right side
 
   // Give the data to this cluster layout:
   var root = d3.hierarchy(data, function(d) {

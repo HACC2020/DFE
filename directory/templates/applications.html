@@ -1,18 +1,59 @@
-{% extends "directory.html" %}
+{% extends "homepage.html" %}
 
 {% block content %}
 
+
 <style>
-  .appinfo {
-    font-size: 70%;
-    line-height: 0.3;
-  }
-  .projectinfo {
-    font-size: 70%;
-    line-height: 0.3;
-  }
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #0256d4;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: Black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #BBE6E4;
+}
+
+.active {
+  background-color: #0256d4;;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #D3D3D3;
+}
+tr:nth-child(odd) {
+  background-color: #DCDCDC;
+}
+
 
 </style>
+
 
   <table>
   <tr>
@@ -51,12 +92,5 @@
   </tr>
 
 </table>
-<!--
-<div>
-  {% for i in page %}
-  <a href="/directory/departments/applications/"></a>
-  {% endfor %}
-</div>
--->
-{% endblock %}
 
+{% endblock %}

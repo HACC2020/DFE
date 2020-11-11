@@ -1,17 +1,31 @@
+{% comment %}
+    Common HTML for entire project
+    Copyright (C) 2020  DFE
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+{% endcomment %}
+
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<h1 style="text-align:left; border:1px solid black;">
-    <img style="float: left; padding:3px;" src="https://ets.hawaii.gov/wp-content/uploads/2020/08/ETS-Logo-B-w-ETS-process4-border-71x71-1.png"
-    alt="Office of Enterprise Technology Services logo" width="40" height="40">State of Hawaii Executive Branch IT Portfolio</h1>
 <style>
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #333;
+  background-color: #0256d4;
 }
 
 li {
@@ -20,18 +34,18 @@ li {
 
 li a {
   display: block;
-  color: white;
+  color: Black;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
 }
 
 li a:hover:not(.active) {
-  background-color: #111;
+  background-color: #BBE6E4;
 }
 
 .active {
-  background-color: #4CAF50;
+  background-color: #0256d4;;
 }
 
 table {
@@ -47,19 +61,27 @@ td, th {
 }
 
 tr:nth-child(even) {
-  background-color: #dddddd;
+  background-color: #D3D3D3;
+}
+tr:nth-child(odd) {
+  background-color: #DCDCDC;
 }
 </style>
 </head>
+
+</head>
 <body>
+  <h1 style="font-family:verdana;font-size: 35px">State of Hawaii Executive Branch IT Portfolio</h1>
 <ul>
-  <li><a href="{% url 'home' %}">Home</a></li>
-  <li><a href="/directory/departments/1">Departments</a></li>
-  <li><a href="{% url 'contact' %}">Contact us</a></li>
-  <li><a href="/directory/applications/1"></a></li>
-  <li style="float:right"><a class="active" href="{% url 'about' %}">About</a></li>
+  <li><a style="font-family:verdana; color:#F0F6F6;" href="{% url 'home' %}">Home</a></li>
+  <li><a style="font-family:verdana; color:#F0F6F6;" href="/directory/departments/1">Departments</a></li>
+  <li><a style="font-family:verdana; color:#F0F6F6;" href="/directory/contacts/">Contact us</a></li>
+  <li style="float:right"><a style="font-family:verdana; color:#F0F6F6;" class="active" href="{% url 'help' %}">Help</a></li>
 </ul>
-{% block content %}
-{% endblock %}
+
+  {% block content %}
+{% endblock content %}
+
 </body>
 </html>
+
