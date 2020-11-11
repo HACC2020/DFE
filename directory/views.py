@@ -1,3 +1,21 @@
+'''
+    Process URL requests
+    Copyright (C) 2020  DFE               
+                                           
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.                         
+                                                          
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.                      
+                                                               
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+'''
+
 from django.shortcuts import render
 from .models import usergroups, applications, projects, percents
 
@@ -31,6 +49,9 @@ def departments(request, page):
 
 
     filterUserGroup = list(set(filterUserGroup))
+
+    #print(filterUserGroup)
+
 
     pages = []
     subdepartments = []
@@ -69,6 +90,7 @@ def application(request, departments):
             apps.append((applications_var[i]))
         for i in range(0,len(applications_var2)):
             apps.append((applications_var2[i]))
+
         #print(apps)
         for i in range(0,len(project_filter)):
             try:
@@ -81,6 +103,7 @@ def application(request, departments):
         return render(request, 'applications.html', {'apps': apps, 'projects': project})
     else:
         return render(request, 'error.html')
+
 
 
 def projectpage(request, project):
