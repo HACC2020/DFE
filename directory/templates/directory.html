@@ -1,4 +1,4 @@
-{% comment %}                 
+{% comment %}
     Common HTML for entire project
     Copyright (C) 2020  DFE               
                                            
@@ -11,7 +11,7 @@
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.                      
-                                                               
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 {% endcomment %}
@@ -19,10 +19,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<h1 style="text-align:left;">
-    <img style="float: left; padding:3px;" src="https://ets.hawaii.gov/wp-content/uploads/2020/08/ETS-Logo-B-w-ETS-process4-border-71x71-1.png"
-    alt="Office of Enterprise Technology Services logo" width="40" height="40">State of Hawaii Executive Branch IT Portfolio</h1>
 <style>
 ul {
   list-style-type: none;
@@ -72,15 +68,20 @@ tr:nth-child(odd) {
 }
 </style>
 </head>
+
+</head>
 <body>
+  <h1 style="font-family:verdana;font-size: 35px">State of Hawaii Executive Branch IT Portfolio</h1>
 <ul>
-  <li><a href="{% url 'home' %}">Home</a></li>
-  <li><a href="/directory/departments/1">Departments</a></li>
-  <li><a href="{% url 'contact' %}">Contact us</a></li>
-  <li><a href="/directory/applications/1"></a></li>
-  <li style="float:right"><a class="active" href="{% url 'about' %}">About</a></li>
+  <li><a style="font-family:verdana; color:#F0F6F6;" href="{% url 'home' %}">Home</a></li>
+  <li><a style="font-family:verdana; color:#F0F6F6;" href="/directory/departments/1">Departments</a></li>
+  <li><a style="font-family:verdana; color:#F0F6F6;" href="/directory/contacts/">Contact us</a></li>
+  <li style="float:right"><a style="font-family:verdana; color:#F0F6F6;" class="active" href="{% url 'help' %}">Help</a></li>
 </ul>
-{% block content %}
-{% endblock %}
+
+  {% block content %}
+{% endblock content %}
+
 </body>
 </html>
+

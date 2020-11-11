@@ -1,4 +1,4 @@
-'''                   
+'''
     Process URL requests
     Copyright (C) 2020  DFE               
                                            
@@ -21,15 +21,15 @@ from .models import usergroups, applications, projects, percents
 
 # Create your views here.
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'homepage.html')
 
 
-def about(request):
-    return render(request, 'about.html')
+def help(request):
+    return render(request, 'help.html')
 
 
 def contact(request):
-    return render(request, 'contact.html')
+    return render(request, 'contacts.html')
 
 
 def departments(request, page):
@@ -46,6 +46,7 @@ def departments(request, page):
         for t in Application_var:
             if i.name == t.ownerAgencyName:
                 filterUserGroup.append(i)
+
 
     filterUserGroup = list(set(filterUserGroup))
 
@@ -88,7 +89,8 @@ def application(request, departments):
         for i in range(0,len(applications_var)):
             apps.append((applications_var[i]))
         for i in range(0,len(applications_var2)):
-            apps.append(applications_var2[i])
+            apps.append((applications_var2[i]))
+
         #print(apps)
         for i in range(0,len(project_filter)):
             try:
@@ -103,16 +105,11 @@ def application(request, departments):
         return render(request, 'error.html')
 
 
-# def projectpage(request, project):
-#     projects_var = projects.objects.filter(name=project)
-#     for i in projects_var:
-#         listofapps = i.applications.split(';')
-#     #print(projects_var)
-#     return render(request, 'projectpage.html', {'projectinfo': projects_var, 'listofapps': listofapps})
-#
 
-
-
-
-
-
+def projectpage(request, project):
+    projects_var = projects.objects.filter(name=project)
+    for i in projects_var:
+        print('yes')
+        listofapps = i.applications.split(';')
+    #print(projects_var)
+    return render(request, 'project.html', {'projectinfo': projects_var, 'listofapps': listofapps})

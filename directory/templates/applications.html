@@ -1,4 +1,4 @@
-{% extends "directory.html" %}
+{% extends "homepage.html" %}
 
 {% comment %}                 
     HTML for applications list                   
@@ -20,16 +20,59 @@
 
 {% block content %}
 
+
 <style>
-  .appinfo {
-    font-size: 70%;
-    padding-bottom: 2px;
-  }
-  .projectinfo {
-    font-size: 70%;
-  }
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #0256d4;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: Black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #BBE6E4;
+}
+
+.active {
+  background-color: #0256d4;;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #D3D3D3;
+}
+tr:nth-child(odd) {
+  background-color: #DCDCDC;
+}
+
 
 </style>
+
   <table>
   <tr>
     <th>Applications</th>
@@ -68,52 +111,4 @@
 
 </table>
 
-
-<!--
-<body>
-
-  <table>
-  <tr>
-
-    <th><b>Application</b></th>
-    <th><b>Projects</b></th>
-
-  </tr>
-{% for i in apps %}
-  <tr>
-   <td><b>{{ i.name }}</b>
-   <br>
-      <br> <div class="appinfo"> Successor: {{ i.successor }} </div>
-      <br> <div class="appinfo"> Business Capability: {{ i.leadingBusinessCapability }}</div>
-      <br> <div class="appinfo"> Business Criticality: {{ i.businessCriticality }} </div>
-      <br> <div class="appinfo"> Functional Fit: {{ i.functionalFit }} </div>
-      <br> <div class="appinfo"> Technical Fit: {{ i.technicalFit }} </div>
-      <br> <div class="appinfo"> Lifecycle/Plan: {{ i.successor }} </div>
-      <br> <div class="appinfo"> Lifecycle/Active: {{ i.lifecycle_active }} </div>
-      <br> <div class="appinfo"> Lifecycle/End Of Life: {{ i.lifecycle_endOfLife }} </div>
-      <br> <div class="appinfo"> Time Tag: {{ i.timeTag }} </div>
-      <br> <div class="appinfo"> Hosting Type Tag: {{ i.hostingTypeTag }} </div>
-      <br> <div class="appinfo"> Major Information System Tag: {{ i.majorInformationSystemsTag }} </div>
-   </td>
-      {% for p in projects %}
-      {% for l in p.applications %}
-      {% if l == i.name %}
-
-     <td style="float:right;background-color: #D3D3D3;"><table style= "float:right;">
-      <td style="float:right;background-color: #D3D3D3;">
-          <td> <br> <a href="/directory/applications/{{p.name}}">{{p.name}}</a></td>
-    {% endif %}
-    {% endfor %}
-    {% endfor %}
-    {% endfor %}
-
-
-
-     </table></td>
-
-  </tr>
-
-</table>
-</body>
--->
 {% endblock %}

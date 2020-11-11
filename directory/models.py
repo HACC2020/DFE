@@ -84,4 +84,8 @@ class percents(models.Model):
         return self.name
 
 
-
+class contactforms(models.Model):
+    firstName = models.CharField(max_length=100)
+    lastName = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
+    message = models.CharField(max_length=100)
