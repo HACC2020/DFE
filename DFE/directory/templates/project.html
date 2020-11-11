@@ -44,8 +44,8 @@
 <script>
 
 // set the dimensions and margins of the graph
-var width = 900
-var height = 530
+var width = 460
+var height = 460
 
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz")
@@ -68,7 +68,7 @@ treeJSON = function(data) {
     console.log(data1)
   // Create the cluster layout:
   var cluster = d3.cluster()
-    .size([height, width-500]);  // 100 is the margin I will have on the right side
+    .size([height, width - 100]);  // 100 is the margin I will have on the right side
 
   // Give the data to this cluster layout:
   var root = d3.hierarchy(data, function(d) {
@@ -110,16 +110,12 @@ treeJSON = function(data) {
     you.append("text")
         .text(function (d) {
             return d.data.name; })
-        .attr("transform", function(d) {
-          return "translate(" + -10 + "," + (25) + ")"
-      })
-        .style("font-family", "verdana")
 
 }
 treeJSON(data1);
 </script>
 
-<table style="width:20%; float:right; bottom: 0; right: 0; position: fixed;">
+<table style="width:20%; float:right">
     <td>
         <b>Name: </b>{{ i.name }}
         <br><b>Owner: </b>{{ i.ownerAgencyName }}
