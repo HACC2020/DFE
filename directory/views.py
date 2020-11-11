@@ -34,20 +34,23 @@ def contact(request):
 
 def departments(request, page):
     usergroups_var = usergroups.objects.all().order_by('parent')
-    project_var = projects.objects.all()
     Application_var = applications.objects.all()
     filterUserGroup = []
 
-    for i in usergroups_var:
-        for t in project_var:
-            if i.name == t.subOwnerAgencyName:
-                filterUserGroup.append(i)
     for i in usergroups_var:
         for t in Application_var:
             if i.name == t.subOwnerAgencyName:
                 filterUserGroup.append(i)
 
+    for i in usergroups_var:
+        for t in Application_var:
+            if i.name == t.ownerAgencyName:
+                filterUserGroup.append(i)
+
     filterUserGroup = list(set(filterUserGroup))
+
+    #print(filterUserGroup)
+
 
     pages = []
     subdepartments = []
@@ -75,6 +78,7 @@ def departments(request, page):
 
 def application(request, departments):
     applications_var = applications.objects.filter(subOwnerAgencyName=departments)
+    applications_var2 = applications.objects.filter(ownerAgencyName=departments)
     subdepartments = usergroups.objects.filter(name=departments)
     project_filter = projects.objects.filter(subOwnerAgencyName=departments)
     apps = []
@@ -83,6 +87,8 @@ def application(request, departments):
     if len(subdepartments) != 0:
         for i in range(0,len(applications_var)):
             apps.append((applications_var[i]))
+        for i in range(0,len(applications_var2)):
+            apps.append(applications_var2[i])
         #print(apps)
         for i in range(0,len(project_filter)):
             try:
