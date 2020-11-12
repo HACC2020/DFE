@@ -19,13 +19,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>HACC DFE Project</title>
 <style>
 ul {
   list-style-type: none;
   margin: 0;
-  padding: 0;
+  padding: 5px 20px;
   overflow: hidden;
   background-color: #0256d4;
+  border-radius:15px;
 }
 
 li {
@@ -34,14 +36,15 @@ li {
 
 li a {
   display: block;
-  color: Black;
+  color: white;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  height:100%;
 }
 
 li a:hover:not(.active) {
-  background-color: #BBE6E4;
+  background-color: #42BFDD;
 }
 
 .active {
@@ -66,6 +69,7 @@ tr:nth-child(even) {
 tr:nth-child(odd) {
   background-color: #DCDCDC;
 }
+
 </style>
 </head>
 
@@ -75,8 +79,8 @@ tr:nth-child(odd) {
 <ul>
   <li><a style="font-family:verdana; color:#F0F6F6;" href="{% url 'home' %}">Home</a></li>
   <li><a style="font-family:verdana; color:#F0F6F6;" href="/directory/departments/1">Departments</a></li>
-  <li><a style="font-family:verdana; color:#F0F6F6;" href="/directory/contacts/">Contact us</a></li>
-  <li style="float:right"><a style="font-family:verdana; color:#F0F6F6;" class="active" href="{% url 'help' %}">Help</a></li>
+  <li><a style="font-family:verdana; color:#F0F6F6;" href="/directory/help/">Contact us</a></li>
+  <li style="float:right"><a style="font-family:verdana; color:#F0F6F6;" class="active" href="{% url 'contacts' %}">Help</a></li>
 </ul>
 
   {% block content %}
