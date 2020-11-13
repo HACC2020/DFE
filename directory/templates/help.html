@@ -1,250 +1,117 @@
 {% extends "directory.html" %}
 
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #084B83;
-  border-radius: 10px;
+{% comment %}
+    Page to allow user to contact site admins
+    Copyright (C) 2020  DFE
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+{% endcomment %}
+
+{% block content %}
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-li {
-  float: left;
+* {
+  box-sizing: border-box;
 }
 
-li a {
-  display: block;
-  color: white ;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
 
-li a:hover:not(.active) {
-  background-color: #42BFDD;
-}
-
-.active {
-  background-color: #0256d4;;
-}
-
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
+input[type=text], select, textarea {
   width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+
 }
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+
 }
 
-tr:nth-child(even) {
-  background-color: #D3D3D3;
+input[type=submit]:hover {
+  background-color: #45a049;
 }
-tr:nth-child(odd) {
-  background-color: #DCDCDC;
+
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 10px;
+}
+
+
+.column {
+  float: left;
+  width: 100%;
+  margin-top: 6px;
+  padding: 20px;
+}
+
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+@media screen and (max-width: 600px) {
+  .column, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
 }
 
 </style>
 </head>
 <body>
 
-{% block content %}
-
-  <h1>Contact Us</h1>
-</ul>
-  <p style="text-align: left;"> <img style="float: left;" src="https://labor.hawaii.gov/test2020/wp-content/blogs.dir/19/files/2019/04/StateSealhighres.png"
-	alt="State of Hawaii Portfolio" height= "400px" width= "400px"> </p>
-
-<h2 style= "font-family:Arial; text-align:center; font-size:30px;"> About This Project</h2>
-  <p style="font-family:Arial; text-align:center; font-size:20px;">
-	This system is run by the State of Hawaii Executive Branch IT Portfolio.
-	It is made to display for the public current projects from the Information Technology Portfolio.
-	If you have any questions, please contact the appropriate department using the table below.</p>
-<table>
-  <tr>
-	<th style="border-radius:10px 0 0 0;background-color:#F0F6F6">Department</th>
-	<th style="border-radius:0 10px 0 0;background-color:#F0F6F6">Contact</th>
-  </tr>
- 
-  <tr>
-	<td>Accounting & General Services</td>
-	<td>Kalanimoku Building<br>1151 Punchbowl Street<br>
-Honolulu, Hawai`i 96813<br>PHONE: 586-0400<br>FAX: 586-0775<br>e-mail: dags@hawaii.gov
-<br>Web Site: https://ags.hawaii.gov</td>
-  </tr>
- 
-  <tr>
-	<td>Agriculture</td>
-	<td>1428 South King Street<br>
-Honolulu, Hawai`i 96814<br>
-PHONE: 973-9550<br>
-FAX: 973-9613<br>
-e-mail: hdoa.info@hawaii.gov<br>
-Web Site: https://hdoa.hawaii.gov</td>
-  </tr>
- 
-  <tr>
-	<td>Attorney General</td>
-	<td>Hale Auhau<br>
-425 Queen Street<br>
-Honolulu, Hawai`i 96813<br>
-PHONE: 586-1282<br>
-FAX: 586-1239<br>
-e-mail: hawaiiag@hawaii.gov<br>
-Web Site: https://ag.hawaii.gov</td>
-  </tr>
- 
-  <tr>
-	<td>Budget & Finance</td>
-	<td>No. 1 Capitol District Building<br>
-250 South Hotel Street<br>
-Honolulu, Hawai`i 96813<br>
-PHONE: 586-1518<br>
-FAX: 586-1976<br>
-e-mail: HI.BudgetandFinance@hawaii.gov<br>
-Web Site: https://budget.hawaii.gov</td>
-  </tr>
- 
-  <tr>
-	<td>Defense</td>
-	<td>3949 Diamond Head Road<br>
-Honolulu, Hawai`i 96816-4495<br>
-PHONE: 733-4246<br>
-FAX: 733-4499<br>
-e-mail: webmaster@dod.state.hi.us<br>
-Web Site: https://dod.hawaii.gov<br>
-Web Site: ready.hawaii.gov</td>
-  </tr>
- 
-  <tr>
-	<td>Education</td>
-	<td>Queen Lili`uokalani Building<br>
-1390 Miller Street<br>
-Honolulu, Hawai`i 96813<br>
-PHONE: 586-3313<br>
-FAX: 586-3314<br>
-Web Site: https://hawaiipublicschools.org</td>
-  </tr>
- 
-  <tr>
-	<td>Enterprise Technology Services</td>
-	<td>
-Office of Enterprise Technology Services, State of Hawaii<br>
-Kalanimoku Building, 1151 Punchbowl St., Rm. B-10<br>
-Honolulu, HI 96813<br>
-PHONE: (808) 586-6000<br>
-FAX: (808) 586-1922<br>
-e-mail: ets@hawaii.gov<br>
-Web Site: ets.hawaii.gov
-</td>
-  </tr>
-  <tr>
-	<td>Hawaiian Home Lands</td>
-	<td>Hale Kalaniana’ole<br>
-91-5420 Kapolei Parkway<br>
-Kapolei, HI 96707<br>
-Tel: (808) 620-9501<br>
-FAX: 620-9529<br>
-Web Site: https://dhhl.hawaii.gov</td>
-  </tr>
- 
-  <tr>
-	<td>Health</td>
-	<td>Kinau Hale<br>
-1250 Punchbowl Street<br>
-Honolulu, Hawai`i 96813<br>
-PHONE: 586-4410<br>
-FAX: 586-4368<br>
-e-mail: webmail@doh.hawaii.gov<br>
-Web Site: https://health.hawaii.gov</td>
-  </tr>
- 
-  <tr>
-	<td>Human Resources Development</td>
-	<td>Leiopapa a Kamehameha Building<br>
-235 South Beretania Street<br>
-Honolulu, Hawai`i 96813<br>
-PHONE: 587-1100<br>
-FAX: 587-1106<br>
-Web Site: https://dhrd.hawaii.gov</td>
-  </tr>
- 
-  <tr>
-	<td>Human Services</td>
-	<td>1390 Miller Street, Room 209<br>
-Honolulu, HI 96813<br>
-PHONE: 586-4997<br>
-FAX: 586-4890<br>
-e-mail: dhs@dhs.hawaii.gov<br>
-Web Site: https://humanservices.hawaii.gov</td>
-  </tr>
- 
-  <tr>
-	<td>Labor and Industrial Relations</td>
-	<td>Keelikolani Building<br>
-830 Punchbowl Street<br>
-Honolulu, Hawai`i 96813<br>
-PHONE: 586-8844<br>
-FAX: 586-9099<br>
-Web Site: https://labor.hawaii.gov</td>
-  </tr>
- 
-  <tr>
-	<td>Land & Natural Resources</td>
-	<td>Kalanimoku Building<br>
-1151 Punchbowl Street<br>
-Honolulu, Hawai`i 96813<br>
-PHONE: 587-0401<br>
-FAX: 587-0390<br>
-e-mail: dlnr@hawaii.gov<br>
-Web Site: https://dlnr.hawaii.gov</td>
-  </tr>
-  <tr>
-	<td>Public Safety</td>
-	<td>919 Ala Moana Boulevard<br>
-Honolulu, Hawai`i 96814<br>
-PHONE: 587-1350<br>
-FAX: 587-1421<br>
-Web Site: https://dps.hawaii.gov</td>
-  </tr>
- 
-  <tr>
-	<td>Taxation</td>
-	<td>Princess Ruth Keelikolani Building<br>
-830 Punchbowl Street<br>
-Honolulu, Hawai`i 96813<br>
-PHONE: 587-1510<br>
-FAX: 587-1560<br>
-e-mail: tax.directors.office@hawaii.gov<br>
-Web Site: https://tax.hawaii.gov</td>
-  </tr>
- 
-  <tr>
-	<td style= "border-radius:0 0 0 10px">Transportation</td>
-	<td style= "border-radius:0 0 10px 0">Aliiaimoku Hale<br>
-869 Punchbowl Street<br>
-Honolulu, Hawai`i 96813<br>
-PHONE: 587-2150<br>
-FAX: 587-3652<br>
-e-mail: dotpao@hawaii.gov<br>
-Web Site: https://hidot.hawaii.gov</td>
-  </tr>
- 
-  </table>
-
- {% endblock %}
-
-</body>
-</html>
 
 
 
+<div class="container">
+  <div style="text-align:center">
+    <h2><img src="https://images-ext-1.discordapp.net/external/O1-2mctgHQtgqj_ToMRmKfQ9BbHbSb9hToD_vaxDIFA/https/ets.hawaii.gov/wp-content/uploads/2020/08/ETS-Logo-B-w-ETS-process4-border-71x71-1.png" style="width:100px;height:100px"><br>Help Form</h2>
+    <p></p>
+  </div>
+  <div class="row">
+    <div class="column">
+    </div>
+    <div class="column">
+      <form action="">
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" name="firstname" placeholder="Your name..">
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+        </select>
+        <label for="subject">Subject</label>
+        <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px width:100%"></textarea>
+        <input style=" background-color:#FF66B3;border-radius:30px" type="submit" value="Submit">
+      <h3>Thank you for your feedback!</h3>
+      </h3>
+      </form>
+    </div>
+  </div>
+</div>
 
-
-
-
-
+{% endblock %}

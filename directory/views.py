@@ -24,12 +24,12 @@ def home(request):
     return render(request, 'homepage.html')
 
 
-def help(request):
-    return render(request, 'help.html')
-
-
 def contact(request):
     return render(request, 'contacts.html')
+
+
+def help(request):
+    return render(request, 'help.html')
 
 
 def departments(request, page):
