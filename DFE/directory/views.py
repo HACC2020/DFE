@@ -73,7 +73,6 @@ def application(request, departments):
             except AttributeError:
                 pass
             project.append(project_filter[i])
-        #print(project)
         return render(request, 'applications.html', {'apps': apps, 'projects': project})
     else:
         return render(request, 'error.html')
