@@ -73,7 +73,7 @@ tr:nth-child(odd) {
 
 </style>
 
-  <table>
+  <table id="appsAndProjects">
   <tr>
     <th>Applications</th>
     <th>Projects</th>
@@ -103,13 +103,21 @@ tr:nth-child(odd) {
     <td>
        <br> <a href="/directory/applications/{{p.name}}">{{p.name}}</a>
     </td>
+
     {% endif %}
+    {% empty %}
+      <td>
+          no project
+      </td>
+
+
+
     {% endfor %}
     {% endfor %}
     {% endfor %}
+
   </tr>
 
 </table>
-
 
 {% endblock %}

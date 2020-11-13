@@ -3,7 +3,7 @@ from .models import usergroups, applications, projects, percents
 
 # Create your views here.
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'homepage.html')
 
 
 def about(request):
