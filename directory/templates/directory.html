@@ -71,13 +71,32 @@ tr:nth-child(odd) {
 
 </head>
 <body>
-  <h1 style="font-family:verdana;font-size: 35px">State of Hawaii Executive Branch IT Portfolio</h1>
-<ul>
-  <li><a style="font-family:verdana; color:#F0F6F6;" href="{% url 'home' %}">Home</a></li>
-  <li><a style="font-family:verdana; color:#F0F6F6;" href="/directory/departments/1">Departments</a></li>
-  <li><a style="font-family:verdana; color:#F0F6F6;" href="/directory/contacts/">Contact us</a></li>
-  <li style="float:right"><a style="font-family:verdana; color:#F0F6F6;" class="active" href="{% url 'help' %}">Help</a></li>
-</ul>
+<nav class="navbar navbar-expand-md navbar-dark" style="background-color: #0256d4">
+		<div class="navbar-brand">
+			<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Seal_of_the_State_of_Hawaii.svg/600px-Seal_of_the_State_of_Hawaii.svg.png" width=50 height=50 class="d-inline-block align-top" loading="lazy">
+			<span class="navbar-text text-white"><b>State of Hawaii IT Portfolio</b></span>
+		</div>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbar">
+			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+				<li class="nav-item">
+					<a class="nav-link text-light" href="#">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link text-light" href="#">Departments</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link text-light" href="#">Contact</a>
+				</li>
+			</ul>
+			<form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" type="search" placeholder="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			</form>
+		</div>
+	</nav>
 
   {% block content %}
 {% endblock content %}
