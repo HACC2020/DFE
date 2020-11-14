@@ -1,0 +1,26 @@
+{% extends "directory.html" %}
+
+{% load static %}
+<script src="{% static 'fetch_json.js' %}"></script>
+
+{% block content %}
+  <table>
+  <tr>
+    <th>Parent Department</th>
+    <th>Departments</th>
+  </tr>
+    {% for i in name %}
+  <tr>
+    <td>{{i.parent}}</td>
+    <td><a href="/directory/{{ i.name }}">{{ i.name }}</a></td>
+  </tr>
+    {% endfor %}
+</table>
+
+<div>
+  {% for i in page %}
+  <a href="/directory/departments/{{i}}">{{i}}</a>
+  {% endfor %}
+</div>
+{% endblock %}
+
