@@ -1,6 +1,6 @@
 
 .name::before {
-  background: url("gradient.JPG");
+  background: url('gradient.JPG');
   content: '';
   z-index: -3;
   width: 100%;
@@ -16,6 +16,7 @@
   -ms-filter: blur(5px);
   filter: blur(0px);
   top: 70px;
+  opacity: 0.8;
 
 }
 
@@ -27,4 +28,8 @@ table {
 
 td,tr{
   background-color:white;
+}
+
+#graphs {
+  width: 100%;
 }

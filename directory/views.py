@@ -112,3 +112,5 @@ def projectpage(request, project):
         listofapps = i.applications.split(';')
     #print(projects_var)
     return render(request, 'project.html', {'projectinfo': projects_var, 'listofapps': listofapps})
+
+

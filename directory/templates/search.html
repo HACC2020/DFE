@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hello Darkness My Old Friend</h1>
+    <script src="https://unpkg.com/lunr/lunr.js%22%3E</script>
+    <script src=search.js></script>
+    <input type="text" id="txtInput" placeholder="Enter a bruh moment" onkeyup="result(this.value)">
+    <!--button type="button" onclick="result();">search</button-->
+    <p id="resultPar">SEARCHING THIS DATA: [{
+        "name": "Lunr",
+        "text": "Like Solr, but much smaller, and not as bright."
+      }, {
+        "name": "React",
+        "text": "A JavaScript library for building user interfaces."
+      }, {
+        "name": "Lodash",
+        "text": "A modern JavaScript utility library delivering modularity, performance & extras."
+      }]</p>
+      <script>
+      var search_this_data = [{% for i in document %}]
+
+</script>
+</body>
+</html>

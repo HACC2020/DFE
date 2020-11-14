@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="name text-secondary" style=" max-height:100%;">
+<div class="name text-light" style=" max-height:100%;">
    <div class="position-static overflow-hidden p-3 p-md-5 m-md-3 text-center ">
     <div class="col-md-9 p-lg-5 mx-auto my-5  ">
       <h1 class="display-4 font-weight-normal  ">
@@ -14,10 +14,40 @@
       </div>
   </div>
     </div>
+
   <div class="container">
-    <iframe style="float:left ;background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);border-radius:15px" width="50%" height="420" src="https://charts.mongodb.com/charts-project-0-yyucg/embed/charts?id=78eebec0-18c0-4eb5-8403-e92d0188ddb2&theme=light"></iframe>
-  <iframe style="float:right;background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);border-radius:15px" width="49%" height="420" src="https://charts.mongodb.com/charts-project-0-yyucg/embed/charts?id=f70da0a0-3851-4891-9999-6634b7fdbb16&theme=light"></iframe>
-            </div>
+
+    <table class="table table-bordered  ">
+    <thead class="thead-dark">
+
+        <th scope="col"  >Project Risk</th>
+      <tbody>
+      <td><div id="graphs"><iframe style="float:left; background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" width="100%" height="480" src="https://charts.mongodb.com/charts-project-0-yyucg/embed/charts?id=b77ba076-22d4-4c1a-a84f-41a33fe58254&theme=light%22%3E"></iframe></div></td></tbody>
+
+
+
+
+           <table class="table table-bordered m-sm-t-10 m-y-sm-3">
+    <thead class="thead-dark">
+
+        <th scope="col" >Business Value</th>
+    <tbody>
+      <td>
+        <iframe style="float:right;background-color: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" width="100%" height="480; " src="https://charts.mongodb.com/charts-project-0-yyucg/embed/charts?id=2f1d0759-1c28-42d9-bcfe-19a2ec9bf94f&theme=light%22%3E"></iframe>
+
+    </td>
+     </tbody>
+
+
+
+             </thead>
+      </table>
+
+    </thead>
+    </table>
+    </div>
+
+
 <!--        <div class="container">-->
 <!--         <div class="alert alert-primary" role="alert"> -->
 <!--  Overall metrics for the entire IT portfolio are displayed above, separated by applications and projects. Applications are actual software systems underneath each respective department and the projects are associated with how the work to update the system is done. An application/project can be defined as “completed” when the department that owns it fills out all the data columns that are provided by ETS. If any data column fails to be completed, that application/project automatically becomes flagged as uncompleted. -->
