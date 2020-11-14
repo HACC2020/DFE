@@ -16,76 +16,50 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 {% endcomment %}
 
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang=en>
 <head>
-    <title>HACC DFE Project</title>
-<style>
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 5px 20px;
-  overflow: hidden;
-  background-color: #0256d4;
-  border-radius:15px;
-}
-
-li {
-  float: left;
-}
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  height:100%;
-}
-
-li a:hover:not(.active) {
-  background-color: #42BFDD;
-}
-
-.active {
-  background-color: #0256d4;;
-}
-
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #D3D3D3;
-}
-tr:nth-child(odd) {
-  background-color: #DCDCDC;
-}
-
-</style>
+	<title>State IT Portfolio</title>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
 
-</head>
 <body>
-  <h1 style="font-family:verdana;font-size: 35px">State of Hawaii Executive Branch IT Portfolio</h1>
-<ul>
-  <li><a style="font-family:verdana; color:#F0F6F6;" href="{% url 'home' %}">Home</a></li>
-  <li><a style="font-family:verdana; color:#F0F6F6;" href="/directory/departments/1">Departments</a></li>
-  <li><a style="font-family:verdana; color:#F0F6F6;" href="/directory/help/">Contact us</a></li>
-  <li style="float:right"><a style="font-family:verdana; color:#F0F6F6;" class="active" href="{% url 'contacts' %}">Help</a></li>
-</ul>
-
-  {% block content %}
-{% endblock content %}
-
+	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #0256d4">
+		<div class="navbar-brand">
+			<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Seal_of_the_State_of_Hawaii.svg/600px-Seal_of_the_State_of_Hawaii.svg.png" width=45 height=45 class="d-inline-block align-top" loading="lazy">
+			<span class="navbar-text text-white"><b>State of Hawaii IT Portfolio</b></span>
+		</div>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbar">
+			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+				<li class="nav-item">
+					<a class="nav-link text-light" href="#">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link text-light" href="#">Departments</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link text-light" href="#">Contact</a>
+				</li>
+			</ul>
+			<form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" type="search" placeholder="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			</form>
+		</div>
+	</nav>
+	{% block content %}
+	{% endblock content %}
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
 
