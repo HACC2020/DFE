@@ -21,7 +21,63 @@ from .models import usergroups, applications, projects, percents
 
 # Create your views here.
 def home(request):
-    return render(request, 'homepage.html')
+    #subdepartments
+    usergroups_var = usergroups.objects.all().order_by('parent')
+    Application_var = applications.objects.all()
+    subOwnerUserGroup = []
+    parentUserGroup = []
+    filterSubOwnerUserGroups = []
+    filterParentUserGroup = []
+
+    for i in usergroups_var:
+        for t in Application_var:
+            if i.name == t.subOwnerAgencyName:
+                subOwnerUserGroup.append(i)
+
+    for i in usergroups_var:
+        for t in Application_var:
+            if i.name == t.ownerAgencyName:
+                parentUserGroup.append(i)
+
+    for i in subOwnerUserGroup:
+        if i not in filterSubOwnerUserGroups:
+            filterSubOwnerUserGroups.append(i)
+
+    for i in parentUserGroup:
+        if i not in filterParentUserGroup:
+            filterParentUserGroup.append(i)
+
+    # print(filterSubOwnerUserGroups)
+    # print(filterParentUserGroup)
+    # filterUserGroup = list(set(filterUserGroup))
+
+
+    #applications and projects
+    applications_var = applications.objects.all()
+    subdepartments = usergroups.objects.all()
+    project_filter = projects.objects.all()
+    apps = []
+    project = []
+
+    print(applications_var)
+    # print(subdepartments)
+    if len(subdepartments) != 0:
+        # print('yes')
+        for i in range(0, len(applications_var)):
+            apps.append((applications_var[i]))
+
+        print(apps)
+        for i in range(0, len(project_filter)):
+            try:
+                project_filter[i].applications = project_filter[i].applications.split(';')
+                # print(project_filter[i])
+            except AttributeError:
+                pass
+            project.append(project_filter[i])
+
+    # print(project)
+    # print(filterUserGroup)
+    return render(request, 'homepage.html', {'sub': filterSubOwnerUserGroups, 'apps': apps, 'projects': project})
 
 
 def help(request):
@@ -29,6 +85,7 @@ def help(request):
 
 
 def contact(request):
+
     return render(request, 'contacts.html')
 
 
@@ -50,7 +107,7 @@ def departments(request, page):
 
     filterUserGroup = list(set(filterUserGroup))
 
-    #print(filterUserGroup)
+    print(filterUserGroup)
 
 
     pages = []
@@ -91,7 +148,7 @@ def application(request, departments):
         for i in range(0,len(applications_var2)):
             apps.append((applications_var2[i]))
 
-        #print(apps)
+        print(apps)
         for i in range(0,len(project_filter)):
             try:
                 project_filter[i].applications=project_filter[i].applications.split(';')

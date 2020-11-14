@@ -1,84 +1,69 @@
-var documents = [{
-    "name": "Lunr",
-    "text": "Like Solr, but much smaller, and not as bright."
-  }, {
-    "name": "React",
-    "text": "A JavaScript library for building user interfaces."
-  }, {
-    "name": "Lodash",
-    "text": "A modern JavaScript utility library delivering modularity, performance & extras."
-  }] //FORMAT IS IMPORTANT
+var listed = [{'name': 'yo', 'link': "https://tse4.mm.bing.net/th?id=OIP.lnQOZq_04T6rE32FCVrDggHaHC&pid=Api&P=0&w=171&h=163"}, {'name': 'ppooy', 'link': "https://search.yahoo.com/search?fr=mcafee&type=E211US550G0&p=how+to+change+the+text+of+an+html+element"}, {'name': 'aay', 'link': "https://search.yahoo.com/search?fr=mcafee&type=E211US550G0&p=how+to+change+the+text+of+an+html+element"}];
+//Put actual data in listed
 
-var idx = lunr(function () {
-  this.ref('name')
-  this.field('name')
-  this.field('text')
+function myFunction() {
+  // Declare variables
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("mySearch");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("myMenu");
+  li = ul.getElementsByTagName("li");
 
-  documents.forEach(function (doc) {
-      this.add(doc)
-  }, this)
-})
+  console.log(input.value);
+  var counter=0;
+  for(i = 0; i < listed.length; i++)
+  {
+      var currentId=("myMenu" + String(counter));
+      var bruh = document.getElementById(currentId);
+      var name = listed[i]['name'];
+      var link = listed[i]['link'];
+      console.log(name.toUpperCase().indexOf(filter) > -1);
+      if (name.toUpperCase().indexOf(filter) > -1 && counter<8)
+      {
+        bruh.style.display = "block";
+        li[counter].style.display = "block";
+        bruh.href=link;
+        bruh.innerHTML=name;
+        console.log("loaded "+name);
+        counter++;
+      };
+  }
+  var countered=counter;
 
-var tokenLengthMetadata = function (builder) {
-    // Define a pipeline function that stores the token length as metadata
-    var pipelineFunction = function (token) {
-      token.metadata['tokenLength'] = token.toString().length
-      return token
-    }
-
-    // Register the pipeline function so the index can be serialised
-    lunr.Pipeline.registerFunction(pipelineFunction, 'tokenLenghtMetadata')
-
-    // Add the pipeline function to the indexing pipeline
-    builder.pipeline.before(lunr.stemmer, pipelineFunction)
-
-    // Whitelist the tokenLength metadata key
-    builder.metadataWhitelist.push('tokenLength')
+  while(counter<8)
+  {
+    var currentId=("myMenu" + String(counter));
+    var bruh = document.getElementById(currentId);
+    bruh.style.display = "none";
+    li[counter].style.display = "none";
+    counter++;
   }
 
-//idx.search('title:foo') //restrict
-//idx.search('foo^10 bar') //boost
-//idx.search('foo~1') //fuzzy
-function result() {
-    var returnRes = [];
-    var written=false;
-    var printState = "";
-    var searchTerm = String(document.getElementById("txtInput").value);
-    if (searchTerm==(""))
+  if(countered==0)
+  {
+    console.log("EXTRAFUNCTION: Counter");
+    var currentId=("myMenu" + String(countered));
+    var bruh = document.getElementById(currentId);
+    bruh.href='#';
+    bruh.style.display = "block";
+    li[countered].style.display = "block";
+    bruh.innerHTML="No results found.";
+  }
+
+  if(input.value=="")
+  {
+    console.log("EXTRAFUNCTION: Blanker");
+    console.log(li.length);
+    for (i = 0 ; i < li.length-1; i++)
     {
-        document.getElementById("resultPar").innerHTML="nothing found";
+        var caller = ("myMenu" + String(i));
+        console.log(caller);
+        var bruh = document.getElementById(caller);
+        console.log(bruh);
+        bruh.style.display = "none";
+        li[i].style.display = "none";
     }
-    else{
-        searchTerm="name:" + searchTerm + " " + searchTerm + "~2";
-        console.log("This is the search term: " + searchTerm);
-        var result=idx.search(searchTerm)
-        //console.log(result)
-        for(var i = 0; i<result.length; i++)
-        {
-            if(result[i]['score']>0.2) {
-                //console.log(result[i]['ref']+".exe");
-                printState+=(result[i]['ref']+".exe");
-                printState+=("<br>");
-                written=true;
-                returnRes[i]={name: result[i]['ref']+".exe"};
-            }
-            document.getElementById("resultPar").innerHTML=printState;
-        }
-        if(written==false)
-        {
-            document.getElementById("resultPar").innerHTML="nothing found";
-        }
-        else
-        {
-            for(var i = 0; i<result.length; i++)
-            {
-                console.log(returnRes[i]['name']);
-            }
-
-        }
-    }
+  }
+  console.log(counter);
+  console.log('-----------------------BREAK-----------------------');
 }
-
-//HOW TO USE: Replace any "resultPar" with a element you want to update with
-//            search results. After that, simply link an input on keyup to
-//            this function. See indexer.html for details/example.
