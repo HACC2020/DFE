@@ -1,0 +1,63 @@
+
+.name::before {
+  background: url('gradient.JPG');
+  content: '';
+  z-index: -3;
+  width: 100%;
+  height: 100%;
+  position:absolute;
+  -webkit-background-size:contain;
+  -moz-background-size: auto;
+  -o-background-size: auto;
+  background-size: cover;
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(0px);
+  top: 70px;
+  opacity: 0.8;
+
+}
+
+table {
+  background-color:white;
+  border:none;
+  overflow:hidden;
+}
+
+td,tr{
+  background-color:white;
+}
+
+#graphs {
+  width: 100%;
+}
+
+/* Style the search box */
+#mySearch {
+  width: 100%;
+  font-size: 18px;
+  padding: 11px;
+  border: 1px solid #ddd;
+}
+
+/* Style the navigation menu */
+#myMenu {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Style the navigation links */
+#myMenu li a {
+  padding: 12px;
+  text-decoration: none;
+  color: black;
+  display: none;
+}
+
+
+#myMenu li a:hover {
+  background-color: #eee;
+}

@@ -1,134 +1,159 @@
 {% extends "directory.html" %}
 
 {% block content %}
-<table style="width:20%; float:left">
 
-  {% for i in projectinfo %}
-  <tr>
-    <th><b>Dates</b></th>
+<div class="name" style=" max-height:100%;">
+    <div class="position-static overflow-hidden p-3 p-md-5 text-center my-0">
+        <div class="col-md-9 p-lg-5 mx-auto my-5 text-white  ">
+            <h1 class="display-4 font-weight-normal  ">
+                Project Name
+            </h1>
+            <p class="lead font-weight-normal ">
+                You can use this page to browse different departments and their sub-departments
+            </p>
+        </div>
+    </div>
+    <div class="container ">
+        <div class="row">
+            <div class="col-sm">
 
-  </tr>
-  <tr>
-    <td><b>Plan Start:</b><br>{{ i.lifecycleCustom_planningStarted }}</td>
+                <table class="table table-bordered text center table-wrapper-scroll-y my-custom-scrollbar "
+                       style="width:100; align:center;">
+                    {% for i in projectinfo %}
 
-  </tr>
-  <tr>
-    <td><b>Approval:</b><br>{{ i.lifecycleCustom_approved }}</td>
+                    <thead class="thead-dark">
+                    <tr>
 
-  </tr>
-  <tr>
-    <td><b>Projected Start:</b><br>{{ i.lifecycleCustom_projectedStart }}</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td style="text-align:center;">
+                            Owner: {{ i.ownerAgencyName }}<br>
+                            Project Status: {{ i.projectStatus }}<br>
+                            Business Value: {{ i.businessValue }}<br>
+                            Project Risk: {{ i.projectRisk }}<br>
+                            Project Risk
+                        </td>
 
-  </tr>
-  <tr>
-    <td><b>Completed:</b><br>{{ i.lifecycleCustom_projectedCompletion }}</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:center;">
+                            Plan Start: {{ i.lifecycleCustom_planningStarted }}<br>
+                            Approval: {{ i.lifecycleCustom_approved }}<br>
+                            Projected Start:{{ i.lifecycleCustom_projectedStart }}<br>
+                            Completed: {{ i.lifecycleCustom_projectedCompletion }}<br>
+                            Cancelled:{{ i.lifecycleCustom_cancelled }}<br>
+                        </td>
 
-  </tr>
-  <tr>
-    <td><b>Cancelled:</b><br>{{ i.lifecycleCustom_cancelled }}</td>
+                    </tr>
+                    <tr>
 
-  </tr>
-
-</table>
-
-<!DOCTYPE html>
-<meta charset="utf-8">
-
-<!-- Load d3.js -->
-<script src="https://d3js.org/d3.v4.js"></script>
-
-<!-- Create a div where the graph will take place -->
-<div id="my_dataviz"></div>
-
-
-<script>
-
-// set the dimensions and margins of the graph
-var width = 900
-var height = 530
-
-// append the svg object to the body of the page
-var svg = d3.select("#my_dataviz")
-  .append("svg")
-    .attr("width", width)
-    .attr("height", height)
-  .append("g")
-    .attr("transform", "translate(40,0)");  // bit of margin on the left = 40
-
-// read json data
-var data1 = {
-    "children":
-        [
-            {% for i in listofapps %}
-            {"name":"{{ i }}", "colname": "level2"},
-            {% endfor %}
-        ],
-    "name":"{% for i in projectinfo %}{{ i.name }}{% endfor %}"}
-treeJSON = function(data) {
-    console.log(data1)
-  // Create the cluster layout:
-  var cluster = d3.cluster()
-    .size([height, width-500]);  // 100 is the margin I will have on the right side
-
-  // Give the data to this cluster layout:
-  var root = d3.hierarchy(data, function(d) {
-      return d.children;
-  });
-  cluster(root);
+                    </tr>
 
 
-  // Add the links between nodes:
-  svg.selectAll('path')
-    .data( root.descendants().slice(1) )
-    .enter()
-    .append('path')
-    .attr("d", function(d) {
-        return "M" + d.y + "," + d.x
-                + "C" + (d.parent.y + 50) + "," + d.x
-                + " " + (d.parent.y + 150) + "," + d.parent.x // 50 and 150 are coordinates of inflexion, play with it to change links shape
-                + " " + d.parent.y + "," + d.parent.x;
+                    </tbody>
+                </table>
+                <div class="table-responsive">
+                    <table class="table">
+                        <!DOCTYPE html>
+                        <meta charset="utf-8">
+
+                        <!-- Load d3.js -->
+                        <script src="https://d3js.org/d3.v4.js"></script>
+
+                        <!-- Create a div where the graph will take place -->
+                        <div class="col-sm" id="my_dataviz"></div>
+
+                        <script>
+
+        // set the dimensions and margins of the graph
+        var width = 900
+        var height = 530
+
+        // append the svg object to the body of the page
+        var svg = d3.select("#my_dataviz")
+          .append("svg")
+            .attr("width", width)
+            .attr("height", height)
+          .append("g")
+            .attr("transform", "translate(40,0)");  // bit of margin on the left = 40
+
+        // read json data
+        var data1 = {
+            "children":
+                [
+                    {% for i in listofapps %}
+                    {"name":"{{ i }}", "colname": "level2"},
+                    {% endfor %}
+                ],
+            "name":"{% for i in projectinfo %}{{ i.name }}{% endfor %}"}
+        treeJSON = function(data) {
+            console.log(data1)
+          // Create the cluster layout:
+          var cluster = d3.cluster()
+            .size([height, width-500]);  // 100 is the margin I will have on the right side
+
+          // Give the data to this cluster layout:
+          var root = d3.hierarchy(data, function(d) {
+              return d.children;
+          });
+          cluster(root);
+
+
+          // Add the links between nodes:
+          svg.selectAll('path')
+            .data( root.descendants().slice(1) )
+            .enter()
+            .append('path')
+            .attr("d", function(d) {
+                return "M" + d.y + "," + d.x
+                        + "C" + (d.parent.y + 50) + "," + d.x
+                        + " " + (d.parent.y + 150) + "," + d.parent.x // 50 and 150 are coordinates of inflexion, play with it to change links shape
+                        + " " + d.parent.y + "," + d.parent.x;
+                      })
+            .style("fill", 'none')
+            .attr("stroke", '#ccc')
+
+
+          // Add a circle for each node.
+
+          var you = svg.selectAll("g")
+              .data(root.descendants())
+              .enter()
+              .append("g")
+              .attr("transform", function(d) {
+                  return "translate(" + d.y + "," + d.x + ")"
               })
-    .style("fill", 'none')
-    .attr("stroke", '#ccc')
+
+            you.append("circle")
+                .attr("r", 7)
+                .style("fill", "#69b3a2")
+                .attr("stroke", "black")
+                .style("stroke-width", 2)
+            you.append("text")
+                .text(function (d) {
+                    return d.data.name; })
+                .attr("transform", function(d) {
+                  return "translate(" + -10 + "," + (25) + ")"
+              })
+                .style("font-family", "verdana")
+
+        }
+        treeJSON(data1);
+
+                        </script>
+                        {% endfor %}
+                    </table>
+                </div>
+
+            </div>
 
 
-  // Add a circle for each node.
+        </div>
+    </div>
+</div>
 
-  var you = svg.selectAll("g")
-      .data(root.descendants())
-      .enter()
-      .append("g")
-      .attr("transform", function(d) {
-          return "translate(" + d.y + "," + d.x + ")"
-      })
-
-    you.append("circle")
-        .attr("r", 7)
-        .style("fill", "#69b3a2")
-        .attr("stroke", "black")
-        .style("stroke-width", 2)
-    you.append("text")
-        .text(function (d) {
-            return d.data.name; })
-        .attr("transform", function(d) {
-          return "translate(" + -10 + "," + (25) + ")"
-      })
-        .style("font-family", "verdana")
-
-}
-treeJSON(data1);
-</script>
-
-<table style="width:20%; float:right; bottom: 0; right: 0; position: fixed;">
-    <td>
-        <b>Name: </b>{{ i.name }}
-        <br><b>Owner: </b>{{ i.ownerAgencyName }}
-        <br><b>Project Status: </b>{{ i.projectStatus }}
-        <br><b>Business Value: </b>{{ i.businessValue }}
-        <br><b>Project Risk: </b>{{ i.projectRisk }}
-    </td>
-{% endfor %}
-</table>
 
 {% endblock %}
 
