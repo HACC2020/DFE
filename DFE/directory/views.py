@@ -3,7 +3,7 @@ from .models import usergroups, applications, projects, percents
 
 # Create your views here.
 def home(request):
-    return render(request, 'homepage.html')
+    return render(request, 'home.html')
 
 
 def about(request):
@@ -83,7 +83,7 @@ def projectpage(request, project):
     for i in projects_var:
         listofapps = i.applications.split(';')
     #print(projects_var)
-    return render(request, 'project.html', {'projectinfo': projects_var, 'listofapps': listofapps})
+    return render(request, 'index.html', {'projectinfo': projects_var, 'listofapps': listofapps})
 
 
 
