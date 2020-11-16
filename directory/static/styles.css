@@ -44,10 +44,28 @@ td,tr{
 
 /* Style the navigation menu */
 #myMenu {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+    list-style-type: none;
+    padding: 0;
+    height: 300px;
+    margin-top: 340px;
+    position: absolute;
+    background-color: white;
+    overflow: auto;
 }
+
+body::-webkit-scrollbar {
+    width: 0.15 rem;
+}
+
+body::-webkit-scrollbar-track {
+    background-color: white;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #D3D3D3;
+}
+
+
 
 /* Style the navigation links */
 #myMenu li a {
