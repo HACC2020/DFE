@@ -52,13 +52,40 @@ def home(request):
     return render(request, 'homepage.html', {'sub': filterSubOwnerUserGroups, 'allApps': applications_all, 'allProjects': project_all})
 
 
-def contact(request):
+'''def contact(request):
 
-    return render(request, 'contacts.html')
+    return render(request, 'contacts.html')'''
 
 
 def help(request):
-    return render(request, 'help.html')
+    usergroups_var = usergroups.objects.all().order_by('parent')
+    Application_var = applications.objects.all()
+    applications_all = applications.objects.all()
+    project_all = projects.objects.all()
+    subOwnerUserGroup = []
+    parentUserGroup = []
+    filterSubOwnerUserGroups = []
+    filterParentUserGroup = []
+
+    for i in usergroups_var:
+        for t in Application_var:
+            if i.name == t.subOwnerAgencyName:
+                subOwnerUserGroup.append(i)
+
+    for i in usergroups_var:
+        for t in Application_var:
+            if i.name == t.ownerAgencyName:
+                parentUserGroup.append(i)
+
+    for i in subOwnerUserGroup:
+        if i not in filterSubOwnerUserGroups:
+            filterSubOwnerUserGroups.append(i)
+
+    for i in parentUserGroup:
+        if i not in filterParentUserGroup:
+            filterParentUserGroup.append(i)
+
+    return render(request, 'help.html', {'sub': filterSubOwnerUserGroups, 'allApps': applications_all, 'allProjects': project_all})
 
 
 def departments(request, page):
