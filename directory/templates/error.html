@@ -18,9 +18,19 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 {% endcomment %}
 
+{% block head %}
+ <link rel="stylesheet" href="/static/error.css">
+{% endblock %}
+
 {% block content %}
-<body style = "background-color:#eedd82;">
-  <h1>404 Page not found</h1>
-  <p>We apologize but the page you are looking for cannot be found</p>
-</body>
+
+<div class="name" style=" max-height:100%;">
+    <div class="position-static overflow-hidden p-3 p-md-5 text-center my-0">
+        <div class="col-md-9 p-lg-5 mx-auto my-5 text-white  ">
+            <h1 class="display-4 font-weight-normal  "> 404</h1>
+            <p class="lead font-weight-normal "> No Mistakes, Just Happy Accidents </p>
+        </div>
+    </div>
+</div>
+
 {% endblock %}

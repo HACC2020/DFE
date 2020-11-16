@@ -27,3 +27,5 @@ urlpatterns = [
     path('<str:departments>/', views.application, name='applications'),
     path('applications/<str:project>/', views.projectpage, name='project')
 ]
+
+handler404 = views.handler404
