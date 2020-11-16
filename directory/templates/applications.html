@@ -1,115 +1,103 @@
 {% extends "homepage.html" %}
 
-{% comment %}                 
-    HTML for applications list                   
-    Copyright (C) 2020  DFE               
+{% comment %}
+HTML for applications list
+Copyright (C) 2020  DFE
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.                         
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.                      
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see
+<https://www.gnu.org/licenses/>.
 {% endcomment %}
 
 {% block content %}
-<style>
 
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #0256d4;
-}
+<div class="name text-secondary" style=" max-height:100%;">
+    <div class="position-static overflow-hidden p-3 p-md-5 m-md-3 text-center ">
+        <div class="col-md-9 p-lg-5 mx-auto my-5  ">
+            <h1 class="display-4 font-weight-normal  ">
+                DFE
+            </h1>
+            <p class="lead font-weight-normal ">
+                You can use this page to browse different departments We really need a border for the text or it will
+                look jank
+            </p>
+        </div>
+    </div>
+</div>
 
-li {
-  float: left;
-}
-
-li a {
-  display: block;
-  color: Black;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-li a:hover:not(.active) {
-  background-color: #BBE6E4;
-}
-
-.active {
-  background-color: #0256d4;;
-}
-
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-}
-
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
-}
-
-tr:nth-child(even) {
-  background-color: #D3D3D3;
-}
-tr:nth-child(odd) {
-  background-color: #DCDCDC;
-}
+<div class="container ">
+    <div class="row">
+        <div class="col-sm">
 
 
-</style>
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col" style="border-radius:15px 0 0 0">Application</th>
+                    <th scope="col" style="border-radius:0 15px 0 0">Projects</th>
+                </tr>
+                </thead>
+                <tbody>
 
-  <table>
-  <tr>
-    <th>Applications</th>
-    <th>Projects</th>
+                <div id="accordion">
 
+                    {% for i in apps %}
+                    <td>
+                        <div class="card">
+                            <div id="{{ i.name }}">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link" data-toggle="collapse" data-target="#{{i.id}}"
+                                            aria-expanded="true" aria-controls="collapseOne">
+                                        {{ i.name }}
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="{{ i.id }}" class="collapse " aria-labelledby="{{ i.name }}"
+                                 data-parent="#accordion">
+                                <div class="card-body">
 
-  </tr>
-    {% for i in apps %}
-  <tr>
-    <td><b>{{ i.name }}:</b>
-      <br>
-      <br> <div class="appinfo"> Successor: {{ i.successor }} </div>
-      <br> <div class="appinfo"> Business Capability: {{ i.leadingBusinessCapability }}</div>
-      <br> <div class="appinfo"> Business Criticality: {{ i.businessCriticality }} </div>
-      <br> <div class="appinfo"> Functional Fit: {{ i.functionalFit }} </div>
-      <br> <div class="appinfo"> Technical Fit: {{ i.technicalFit }} </div>
-      <br> <div class="appinfo"> Lifecycle/Plan: {{ i.successor }} </div>
-      <br> <div class="appinfo"> Lifecycle/Active: {{ i.lifecycle_active }} </div>
-      <br> <div class="appinfo"> Lifecycle/End Of Life: {{ i.lifecycle_endOfLife }} </div>
-      <br> <div class="appinfo"> Time Tag: {{ i.timeTag }} </div>
-      <br> <div class="appinfo"> Hosting Type Tag: {{ i.hostingTypeTag }} </div>
-      <br> <div class="appinfo"> Major Information System Tag: {{ i.majorInformationSystemsTag }} </div>
-    </td>
-    {% for p in projects %}
-    {% for l in p.applications %}
-    {% if l == i.name %}
+                                    Successor: {{ i.successor }}<br>
+                                    Business Capability: {{ i.leadingBusinessCapability }}<br>
+                                    Business Criticality: {{ i.businessCriticality }}<br>
+                                    Functional Fit: {{ i.functionalFit }}<br>
+                                    Technical Fit: {{ i.technicalFit }}<br>
+                                    Lifecycle/Plan: {{ i.successor }}<br>
+                                    Lifecycle/Active: {{ i.lifecycle_active }}<br>
+                                    Lifecycle/End Of Life: {{ i.lifecycle_endOfLife }}<br>
+                                    Time Tag: {{ i.timeTag }}<br>
+                                    Hosting Type Tag: {{ i.hostingTypeTag }}<br>
+                                    Major Information System Tag: {{ i.majorInformationSystemsTag }}<br>
 
-    <td>
-       <br> <a href="/directory/applications/{{p.name}}">{{p.name}}</a>
-    </td>
-
-    {% endif %}
-    {% endfor %}
-    {% endfor %}
-    {% endfor %}
-
-  </tr>
-
-</table>
-
+                                </div>
+                                {% for p in projects %}
+                                {% for l in p.applications %}
+                                {% if l == i.name %}
+                                <td>
+                                    <br> <a href="/directory/applications/{{p.name}}">{{p.name}}</a>
+                                </td>
+                                {% endif %}
+                                {% endfor %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>
 {% endblock %}
 
