@@ -1,3 +1,17 @@
+::-webkit-scrollbar{
+	width: 0.25rem;
+    height: 0.25rem;
+}
+::-webkit-scrollbar-track{
+	background: #ffffff;
+	opacity: .5px;
+}
+::-webkit-scrollbar-thumb{
+	background: #0256d4;
+}
+.scroll-width-auto {
+  scrollbar-width: thin;
+}
 
 .name::before {
   background: url('gradient.JPG');
@@ -41,31 +55,19 @@ td,tr{
   padding: 11px;
   border: 1px solid #ddd;
 }
-
+#conatinerheight{
+    height: 0px;
+    overflow: auto;
+    position: static;
+}
 /* Style the navigation menu */
 #myMenu {
     list-style-type: none;
     padding: 0;
-    height: 300px;
-    margin-top: 340px;
     position: absolute;
     background-color: white;
     overflow: auto;
 }
-
-body::-webkit-scrollbar {
-    width: 0.15 rem;
-}
-
-body::-webkit-scrollbar-track {
-    background-color: white;
-}
-
-body::-webkit-scrollbar-thumb {
-    background-color: #D3D3D3;
-}
-
-
 
 /* Style the navigation links */
 #myMenu li a {
