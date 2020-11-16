@@ -24,6 +24,8 @@ def home(request):
     #subdepartments
     usergroups_var = usergroups.objects.all().order_by('parent')
     Application_var = applications.objects.all()
+    applications_all = applications.objects.all()
+    project_all = projects.objects.all()
     subOwnerUserGroup = []
     parentUserGroup = []
     filterSubOwnerUserGroups = []
@@ -47,51 +49,50 @@ def home(request):
         if i not in filterParentUserGroup:
             filterParentUserGroup.append(i)
 
-    # print(filterSubOwnerUserGroups)
-    # print(filterParentUserGroup)
-    # filterUserGroup = list(set(filterUserGroup))
+    return render(request, 'homepage.html', {'sub': filterSubOwnerUserGroups, 'allApps': applications_all, 'allProjects': project_all})
 
 
-    #applications and projects
-    applications_var = applications.objects.all()
-    subdepartments = usergroups.objects.all()
-    project_filter = projects.objects.all()
-    apps = []
-    project = []
+'''def contact(request):
 
-    print(applications_var)
-    # print(subdepartments)
-    if len(subdepartments) != 0:
-        # print('yes')
-        for i in range(0, len(applications_var)):
-            apps.append((applications_var[i]))
-
-        print(apps)
-        for i in range(0, len(project_filter)):
-            try:
-                project_filter[i].applications = project_filter[i].applications.split(';')
-                # print(project_filter[i])
-            except AttributeError:
-                pass
-            project.append(project_filter[i])
-
-    # print(project)
-    # print(filterUserGroup)
-    return render(request, 'homepage.html', {'sub': filterSubOwnerUserGroups, 'apps': apps, 'projects': project})
+    return render(request, 'contacts.html')'''
 
 
 def help(request):
-    return render(request, 'help.html')
+    usergroups_var = usergroups.objects.all().order_by('parent')
+    Application_var = applications.objects.all()
+    applications_all = applications.objects.all()
+    project_all = projects.objects.all()
+    subOwnerUserGroup = []
+    parentUserGroup = []
+    filterSubOwnerUserGroups = []
+    filterParentUserGroup = []
 
+    for i in usergroups_var:
+        for t in Application_var:
+            if i.name == t.subOwnerAgencyName:
+                subOwnerUserGroup.append(i)
 
-def contact(request):
+    for i in usergroups_var:
+        for t in Application_var:
+            if i.name == t.ownerAgencyName:
+                parentUserGroup.append(i)
 
-    return render(request, 'contacts.html')
+    for i in subOwnerUserGroup:
+        if i not in filterSubOwnerUserGroups:
+            filterSubOwnerUserGroups.append(i)
+
+    for i in parentUserGroup:
+        if i not in filterParentUserGroup:
+            filterParentUserGroup.append(i)
+
+    return render(request, 'help.html', {'sub': filterSubOwnerUserGroups, 'allApps': applications_all, 'allProjects': project_all})
 
 
 def departments(request, page):
     usergroups_var = usergroups.objects.all().order_by('parent')
     Application_var = applications.objects.all()
+    applications_all = applications.objects.all()
+    project_all = projects.objects.all()
     filterUserGroup = []
 
     for i in usergroups_var:
@@ -107,7 +108,7 @@ def departments(request, page):
 
     filterUserGroup = list(set(filterUserGroup))
 
-    print(filterUserGroup)
+    #print(filterUserGroup)
 
 
     pages = []
@@ -131,7 +132,34 @@ def departments(request, page):
     for i in range(1, int(page_var)):
         pages.append(i)
 
-    return render(request, 'departments.html', {'name': subdepartments, 'page': pages})
+    #Search Function
+    # subdepartments
+    usergroups_var = usergroups.objects.all().order_by('parent')
+    Application_var = applications.objects.all()
+    subOwnerUserGroup = []
+    parentUserGroup = []
+    filterSubOwnerUserGroups = []
+    filterParentUserGroup = []
+
+    for i in usergroups_var:
+        for t in Application_var:
+            if i.name == t.subOwnerAgencyName:
+                subOwnerUserGroup.append(i)
+
+    for i in usergroups_var:
+        for t in Application_var:
+            if i.name == t.ownerAgencyName:
+                parentUserGroup.append(i)
+
+    for i in subOwnerUserGroup:
+        if i not in filterSubOwnerUserGroups:
+            filterSubOwnerUserGroups.append(i)
+
+    for i in parentUserGroup:
+        if i not in filterParentUserGroup:
+            filterParentUserGroup.append(i)
+
+    return render(request, 'departments.html', {'name': subdepartments, 'page': pages, 'sub': filterSubOwnerUserGroups, 'allApps': applications_all, 'allProjects': project_all})
 
 
 def application(request, departments):
@@ -139,6 +167,8 @@ def application(request, departments):
     applications_var2 = applications.objects.filter(ownerAgencyName=departments)
     subdepartments = usergroups.objects.filter(name=departments)
     project_filter = projects.objects.filter(subOwnerAgencyName=departments)
+    applications_all = applications.objects.all()
+    project_all = projects.objects.all()
     apps = []
     project = []
 
@@ -148,7 +178,7 @@ def application(request, departments):
         for i in range(0,len(applications_var2)):
             apps.append((applications_var2[i]))
 
-        print(apps)
+        #print(apps)
         for i in range(0,len(project_filter)):
             try:
                 project_filter[i].applications=project_filter[i].applications.split(';')
@@ -157,17 +187,78 @@ def application(request, departments):
                 pass
             project.append(project_filter[i])
         #print(project)
-        return render(request, 'applications.html', {'apps': apps, 'projects': project})
+
+        usergroups_var = usergroups.objects.all().order_by('parent')
+        Application_var = applications.objects.all()
+        subOwnerUserGroup = []
+        parentUserGroup = []
+        filterSubOwnerUserGroups = []
+        filterParentUserGroup = []
+
+        for i in usergroups_var:
+            for t in Application_var:
+                if i.name == t.subOwnerAgencyName:
+                    subOwnerUserGroup.append(i)
+
+        for i in usergroups_var:
+            for t in Application_var:
+                if i.name == t.ownerAgencyName:
+                    parentUserGroup.append(i)
+
+        for i in subOwnerUserGroup:
+            if i not in filterSubOwnerUserGroups:
+                filterSubOwnerUserGroups.append(i)
+
+        for i in parentUserGroup:
+            if i not in filterParentUserGroup:
+                filterParentUserGroup.append(i)
+
+        return render(request, 'applications.html', {'apps': apps, 'projects': project, 'sub': filterSubOwnerUserGroups, 'allApps': applications_all, 'allProjects': project_all})
     else:
         return render(request, 'error.html')
 
 
 def projectpage(request, project):
     projects_var = projects.objects.filter(name=project)
+    applications_all = applications.objects.all()
+    project_all = projects.objects.all()
     for i in projects_var:
-        print('yes')
-        listofapps = i.applications.split(';')
+        #print('yes')
+        try:
+            listofapps = i.applications.split(';')
+        except AttributeError:
+            pass
+
     #print(projects_var)
-    return render(request, 'project.html', {'projectinfo': projects_var, 'listofapps': listofapps})
+    usergroups_var = usergroups.objects.all().order_by('parent')
+    Application_var = applications.objects.all()
+    subOwnerUserGroup = []
+    parentUserGroup = []
+    filterSubOwnerUserGroups = []
+    filterParentUserGroup = []
+
+    for i in usergroups_var:
+        for t in Application_var:
+            if i.name == t.subOwnerAgencyName:
+                subOwnerUserGroup.append(i)
+
+    for i in usergroups_var:
+        for t in Application_var:
+            if i.name == t.ownerAgencyName:
+                parentUserGroup.append(i)
+
+    for i in subOwnerUserGroup:
+        if i not in filterSubOwnerUserGroups:
+            filterSubOwnerUserGroups.append(i)
+
+    for i in parentUserGroup:
+        if i not in filterParentUserGroup:
+            filterParentUserGroup.append(i)
+
+    return render(request, 'project.html', {'projectinfo': projects_var, 'listofapps': listofapps, 'sub': filterSubOwnerUserGroups, 'allApps': applications_all, 'allProjects': project_all})
+
+
+def handler404(request, exception):
+    return render(request, 'error.html', status=404)
 
 

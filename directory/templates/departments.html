@@ -1,19 +1,19 @@
 {% extends "homepage.html" %}
 
-{% comment %}                 
-    Departments page                   
-    Copyright (C) 2020  DFE               
-                                           
+{% comment %}
+    Departments page
+    Copyright (C) 2020  DFE
+
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.                         
-                                                          
+    (at your option) any later version.
+
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.                      
-                                                               
+    GNU General Public License for more details.
+
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 {% endcomment %}
@@ -24,14 +24,15 @@
 
 {% block content %}
 
+
 <div class="name text-secondary" style=" max-height:100%;">
    <div class="position-static overflow-hidden p-3 p-md-5 m-md-3 text-center ">
     <div class="col-md-9 p-lg-5 mx-auto my-5  text-white">
       <h1 class="display-4 font-weight-normal  ">
-   Defining Future Expectations
+   Departments
     </h1>
       <p class="lead font-weight-normal ">
-        The DFE project provides public access to the State of Hawaii’s IT Portfolio with the aim of providing meaningful data and visualizations
+        You can use this page to browse different departments and their sub-departments
         </p>
       </div>
   </div>
@@ -55,14 +56,14 @@
     {% for i in name %}
     <tr>
         <td>{{i.parent}}</td>
-        <td><a href="/directory/{{ i.name }}">{{ i.name }}</a></td>
+        <td><a href="/{{ i.name }}">{{ i.name }}</a></td>
     </tr>
     {% endfor %}
   </tbody>
     </table>
       <div>
         {% for i in page %}
-        <a href="/directory/departments/{{i}}">{{i}}</a>
+        <a href="/departments/{{i}}">{{i}}</a>
         {% endfor %}
       </div>
   </div>
